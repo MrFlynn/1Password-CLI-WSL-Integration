@@ -29,7 +29,7 @@ Create the file `/usr/local/bin/op` and paste the contents of the below script i
 #!/bin/bash
 
 # Find base folder for 1Password CLI in current user's Windows WinGet Packages
-WIN_OP_BASE="/mnt/c/Users/$(cmd.exe /c echo %USERNAME% | tr -d '\r')/AppData/Local/Microsoft/WinGet/Packages"
+WIN_OP_BASE="$(wslpath "$(cmd.exe /c echo %USERPROFILE% 2>/dev/null | tr -d '\r')")/AppData/Local/Microsoft/WinGet/Packages"
 
 # Find the latest folder matching the pattern (AgileBits.1Password.CLI*)
 OP_DIR=$(ls -td "$WIN_OP_BASE"/AgileBits.1Password.CLI* 2>/dev/null | head -n1)
